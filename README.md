@@ -1,6 +1,6 @@
 # Mindmap Flow: Next.js 14, Server Actions, React, Prisma, Stripe, Tailwind, MySQL
 
-![image](https://github.com/anhquan2211/mindmap-flow-project/public/imageProject.jpg)
+![image](./public/imageProject.jpg)
 
 This is a repository for Mindmap Flow: Next.js 14, Server Actions, React, Prisma, Stripe, Tailwind, MySQL
 
