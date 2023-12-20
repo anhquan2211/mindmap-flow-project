@@ -32,8 +32,8 @@ const BoardList = async () => {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center font-semibold text-lg text-neutral-700">
-        <User2 className="h-6 w-6 mr-2" />
+      <div className="flex items-center font-semibold text-lg text-neutral-700 dark:text-neutral-100">
+        <User2 className="h-6 w-6 mr-2 dark:text-neutral-100" />
         Your Mindmaps
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">

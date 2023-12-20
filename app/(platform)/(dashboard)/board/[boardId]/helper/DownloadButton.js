@@ -51,7 +51,7 @@ function DownloadButton() {
     <div>
       <Panel position="top-left">
         <button className="download-btn" onClick={onClick}>
-          Download image
+          Export Image
         </button>
       </Panel>
     </div>

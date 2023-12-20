@@ -17,6 +17,10 @@ import { useRouter } from "next/navigation";
 import { usePrivateModal } from "@/hooks/use-private-modal";
 import { OrganizationProfile } from "@clerk/nextjs";
 
+import { MdOutlinePublic } from "react-icons/md";
+import { RiGitRepositoryPrivateFill } from "react-icons/ri";
+import { MdDelete } from "react-icons/md";
+
 interface BoardOptionsProps {
   id: string;
 }
@@ -43,13 +47,17 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button className="h-auto w-auto p-2" variant="transparent">
+        <Button
+          className="h-auto w-auto p-2 flex gap-x-2"
+          variant="transparent"
+        >
+          Mindmap Actions
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
 
       <PopoverContent className="px-0 pt-3 pb-3" side="bottom" align="start">
-        <div className="text-sm font-medium text-center text-neutral-600 pb-4">
+        <div className="text-sm font-medium text-center text-neutral-600 pb-4 dark:text-neutral-100">
           Mindmap Actions
         </div>
 
@@ -67,6 +75,7 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
           className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm"
           onClick={onClick}
         >
+          <MdOutlinePublic className="mr-2 w-4 h-4" />
           Share Public
         </Button>
 
@@ -79,6 +88,7 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
             privateModal.onOpen();
           }}
         >
+          <RiGitRepositoryPrivateFill className="mr-2 w-4 h-4" />
           Share Private
         </Button>
 
@@ -88,6 +98,7 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
           disabled={isLoading}
           className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm"
         >
+          <MdDelete className="mr-2 w-4 h-4" />
           Delete this Mindmap
         </Button>
       </PopoverContent>

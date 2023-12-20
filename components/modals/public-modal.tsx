@@ -17,6 +17,7 @@ export const PublicModal = () => {
   const pathname = usePathname();
 
   const [copied, setCopied] = useState(false);
+  const [published, setPublished] = useState(false);
 
   const publicModal = usePublicModal();
 
@@ -49,38 +50,67 @@ export const PublicModal = () => {
     }, 1000);
   };
 
+  const handlePublished = () => {
+    setPublished(true);
+  };
+
+  const handleUnPublished = () => {
+    setPublished(false);
+  };
+
   return (
     <Dialog open={publicModal.isOpen} onOpenChange={publicModal.onClose}>
-      <DialogContent className="max-w-md p-0 overflow-hidden">
+      <DialogContent className="max-w-md p-0 overflow-hidden py-5">
         <div className="relative flex items-center justify-center mt-4">
-          <MdPublic className="h-10 w-10 text-blue-600" />
+          <MdPublic className="h-10 w-10 text-blue-600 dark:text-neutral-200" />
         </div>
 
-        <div className="text-neutral-700 mx-auto space-y-2">
-          <h2 className="font-semibold text-xl">Public this Mindmap!</h2>
-          <p className="text-xs font-semibold text-neutral-600">
+        <div className="text-neutral-700 mx-auto space-y-2 text-center">
+          <h2 className="font-semibold text-xl dark:text-neutral-100">
+            Public this Mindmap!
+          </h2>
+          <p className="text-xs font-semibold text-neutral-600 dark:text-neutral-100">
             Share your Mindmap with others.
           </p>
         </div>
 
-        <div className="flex items-center mb-4 max-w-md mx-5">
-          <input
-            className="flex-1 px-2 text-xs border rounded-l-md h-8 bg-muted truncate"
-            value={url}
-            disabled
-          />
+        {published ? (
+          <>
+            <div className="flex items-center mb-4 max-w-md mx-5">
+              <input
+                className="flex-1 px-2 text-xs border rounded-l-md h-8 bg-muted truncate"
+                value={url}
+                disabled
+              />
+              <Button
+                onClick={onCopy}
+                disabled={copied}
+                className="h-8 rounded-l-none"
+              >
+                {copied ? (
+                  <Check className="h-4 w-4" />
+                ) : (
+                  <Copy className="h-4 w-4" />
+                )}
+              </Button>
+            </div>
+            <Button
+              variant="primary"
+              className="mx-5 dark:text-neutral-100 mb-3"
+              onClick={handleUnPublished}
+            >
+              UnPublished
+            </Button>
+          </>
+        ) : (
           <Button
-            onClick={onCopy}
-            disabled={copied}
-            className="h-8 rounded-l-none"
+            variant="primary"
+            className="mx-5 dark:text-neutral-100 mb-3"
+            onClick={handlePublished}
           >
-            {copied ? (
-              <Check className="h-4 w-4" />
-            ) : (
-              <Copy className="h-4 w-4" />
-            )}
+            Published
           </Button>
-        </div>
+        )}
       </DialogContent>
     </Dialog>
   );

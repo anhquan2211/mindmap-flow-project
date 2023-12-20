@@ -16,12 +16,14 @@ export const PrivateModal = () => {
     <Dialog open={privateModal.isOpen} onOpenChange={privateModal.onClose}>
       <DialogContent className="max-w-5xl p-0 overflow-hidden">
         <div className="relative flex items-center justify-center mt-4">
-          <RiGitRepositoryPrivateLine className="h-10 w-10 text-blue-600" />
+          <RiGitRepositoryPrivateLine className="h-10 w-10 text-blue-600 dark:text-neutral-100" />
         </div>
 
         <div className="text-neutral-700 mx-auto space-y-2 text-center">
-          <h2 className="font-semibold text-xl">Private this Mindmap!</h2>
-          <p className="text-xs font-semibold text-neutral-600 mb-4">
+          <h2 className="font-semibold text-xl dark:text-neutral-100">
+            Private this Mindmap!
+          </h2>
+          <p className="text-xs font-semibold text-neutral-600 mb-4 dark:text-neutral-100">
             Share your Mindmap with private.
           </p>
 
