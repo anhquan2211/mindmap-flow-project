@@ -10,9 +10,9 @@ function TextUpdateNode({ data, isConnectable, ...rest }) {
   const { setNodes } = useReactFlow();
   const [disabled, setDisabled] = useState(true);
 
-  useEffect(() => {
-    setDisabled(false);
-  }, [rest.id]);
+  // useEffect(() => {
+  //   setDisabled(false);
+  // }, [rest.id]);
 
   const onChange = useCallback(
     (evt) => {
@@ -62,9 +62,17 @@ function TextUpdateNode({ data, isConnectable, ...rest }) {
           className={clsx(!disabled && "nodrag editable", "w-full text-center")}
           defaultValue={data.label}
           readOnly={disabled}
-          onDoubleClick={() => setDisabled(false)}
+          onDoubleClick={() => {
+            setDisabled(false);
+            console.log(disabled);
+          }}
           onBlur={() => {
             setDisabled(true);
+          }}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") {
+              setDisabled(true);
+            }
           }}
           autoComplete="off"
         />

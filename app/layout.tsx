@@ -8,6 +8,7 @@ import { ModeToggle } from "@/components/ModeToggle/ModeToggle";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("http://localhost:3000"),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
@@ -22,6 +23,8 @@ export const metadata: Metadata = {
   openGraph: {
     images:
       "https://upload.wikimedia.org/wikipedia/commons/c/cf/Elements_of_the_culture_mindmap.png",
+    description:
+      "Powerful & Easy To Use — Your Ideas Deserve A Beautiful Online Mind Map Canvas. Start For Free. Upgrade Anytime. ",
   },
 };
 

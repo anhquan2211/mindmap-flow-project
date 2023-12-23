@@ -17,7 +17,6 @@ import ReactFlow, {
   getConnectedEdges,
   Panel,
 } from "reactflow";
-import ResizeRotateNode from "../helper/ResizeRotateNode";
 import TextUpdateNode from "../helper/TextUpdate";
 
 import "reactflow/dist/style.css";
@@ -27,13 +26,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import DownloadButton from "../helper/DownloadButton";
 
-import useSWR from "swr";
-
-import {
-  getMindmap,
-  postMindmap,
-  updateMindmap,
-} from "@/helpers/mindmapService";
+import { postMindmap } from "@/helpers/mindmapService";
 import { useAction } from "@/hooks/use-action";
 import { createList } from "@/actions/create-list";
 
