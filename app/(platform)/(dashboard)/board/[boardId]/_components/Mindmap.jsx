@@ -68,6 +68,16 @@ function shouldEdgeBeRemoved(edge) {
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
+const connectionLineStyle = {
+  stroke: "rgb(79 70 229)",
+  strokeWidth: 2,
+};
+
+const defaultEdgeOptions = {
+  style: connectionLineStyle,
+  type: "default",
+};
+
 const Mindmap = () => {
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
@@ -75,7 +85,6 @@ const Mindmap = () => {
   const saveButtonRef = useRef(null);
 
   const params = useParams();
-  const router = useRouter();
 
   const [selectedId, setSelectedId] = useState(false);
   const [selectedSource, setSelectedSource] = useState(false);
@@ -87,11 +96,8 @@ const Mindmap = () => {
   const { screenToFlowPosition, getNode, getEdge, addNodes, setViewport } =
     useReactFlow();
 
-  // const { data } = useSWR(`https://ff9cn8-8080.csb.app/mindmap/${params.boardId}`, fetcher);
-
-  // console.log("data: ", data);
-
   let id = 0;
+
   if (nodes?.length) {
     const ids = nodes.map((node) => node.id);
     id = Math.max(...ids) + 1;
@@ -99,30 +105,11 @@ const Mindmap = () => {
 
   const getId = useCallback(() => `${id++}`, [id]);
 
-  const { execute } = useAction(createList, {
-    onSuccess: (data) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
-
   useEffect(() => {
     if (restoreButtonRef.current) {
       restoreButtonRef.current.click();
     }
   }, [params.boardId]);
-
-  useEffect(() => {
-    const saveInterval = setInterval(() => {
-      if (saveButtonRef.current) {
-        saveData();
-      }
-    }, 15000); // 10 seconds (10,000 milliseconds)
-
-    return () => clearInterval(saveInterval);
-  }, []);
 
   const saveData = useCallback(() => {
     if (rfInstance) {
@@ -144,26 +131,24 @@ const Mindmap = () => {
       }
 
       localStorage.setItem(flowKey, JSON.stringify(flowArr));
-      // console.log("flowArr: ", flowArr);
-      // flowArr.map((flow) => {
-      //   if (flow.id === params.boardId) {
-      //     console.log("flow: ", flow);
-      //     // updateMindmap(flow);
-      //     // postMindmap(flow);
-      //     execute({
-      //       data_map: flow,
-      //       boardId: params.boardId,
-      //     });
-      //   }
-      // });
     }
   }, [rfInstance, params.boardId]);
 
-  const onSave = () => {
+  useEffect(() => {
+    const saveInterval = setInterval(() => {
+      if (saveButtonRef.current) {
+        saveData();
+      }
+    }, 15000); // 10 seconds (10,000 milliseconds)
+
+    return () => clearInterval(saveInterval);
+  }, [saveData]);
+
+  const onSave = useCallback(() => {
     saveData();
 
     toast.success("Saved Successfully!");
-  };
+  }, [saveData]);
 
   const onRestore = useCallback(() => {
     const restoreFlow = async () => {
@@ -300,16 +285,6 @@ const Mindmap = () => {
     onEdgesChange(nextChanges);
   }
 
-  const connectionLineStyle = {
-    stroke: "rgb(79 70 229)",
-    strokeWidth: 2,
-  };
-
-  const defaultEdgeOptions = {
-    style: connectionLineStyle,
-    type: "default",
-  };
-
   const saveUpdateMindMap = async () => {
     try {
       if (data) {
@@ -369,7 +344,7 @@ const Mindmap = () => {
             position: "absolute",
             top: "100px",
             backgroundColor: "#686de0",
-            padding: "8px 10px",
+
             borderRadius: "6px",
             boxShadow:
               "rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px",
@@ -377,10 +352,11 @@ const Mindmap = () => {
           }}
         >
           <button
+            style={{
+              padding: "8px 10px",
+            }}
             onClick={() => {
               const id = getId();
-              const dimensions =
-                reactFlowWrapper.current.getBoundingClientRect();
               addNodes([
                 {
                   id,
@@ -406,14 +382,19 @@ const Mindmap = () => {
             position: "absolute",
             top: "150px",
             backgroundColor: "#686de0",
-            padding: "8px 10px",
             borderRadius: "6px",
             boxShadow:
               "rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px",
             color: "#fff",
           }}
         >
-          <button ref={saveButtonRef} onClick={onSave}>
+          <button
+            ref={saveButtonRef}
+            onClick={onSave}
+            style={{
+              padding: "8px 10px",
+            }}
+          >
             Save
           </button>
         </Panel>
@@ -425,14 +406,19 @@ const Mindmap = () => {
             position: "absolute",
             top: "200px",
             backgroundColor: "#686de0",
-            padding: "8px 10px",
             borderRadius: "6px",
             boxShadow:
               "rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px",
             color: "#fff",
           }}
         >
-          <button ref={restoreButtonRef} onClick={onRestore}>
+          <button
+            ref={restoreButtonRef}
+            onClick={onRestore}
+            style={{
+              padding: "8px 10px",
+            }}
+          >
             Restore
           </button>
         </Panel>

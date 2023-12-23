@@ -14,7 +14,7 @@ const OrganizationIdPage = async () => {
     // </ReactFlowProvider>
     <div className="w-full mb-20">
       <Info isPro={isPro} />
-      <Separator className="my-4" />
+      <Separator className="my-4 dark:bg-slate-100/20" />
       <div className="px-2 md:px-4">
         <Suspense fallback={<BoardList.Skeleton />}>
           <BoardList />

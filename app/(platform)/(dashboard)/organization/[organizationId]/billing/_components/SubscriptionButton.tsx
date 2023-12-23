@@ -31,7 +31,12 @@ const SubscriptionButton = ({ isPro }: SubscriptionButtonProps) => {
   };
 
   return (
-    <Button variant="primary" disabled={isLoading} onClick={onClick}>
+    <Button
+      variant="primary"
+      disabled={isLoading}
+      onClick={onClick}
+      className="dark:text-slate-100"
+    >
       {isPro ? "Manage information pro" : "Upgrade to Pro"}
     </Button>
   );
