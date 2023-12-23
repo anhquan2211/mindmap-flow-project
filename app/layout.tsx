@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ModeToggle } from "@/components/ModeToggle/ModeToggle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +19,9 @@ export const metadata: Metadata = {
       href: "/logo.png",
     },
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     images:
       "https://upload.wikimedia.org/wikipedia/commons/c/cf/Elements_of_the_culture_mindmap.png",
