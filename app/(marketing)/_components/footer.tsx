@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export const Footer = () => {
   return (
-    <div className="fixed bottom-0 w-full p-4 bg-slate-100">
+    <div className="fixed bottom-0 w-full p-4 bg-slate-100 dark:bg-gray-900">
       <div className="md:max-w-screen-2xl mx-auto flex items-center w-full justify-between">
         <Logo />
         <div className="text-sm text-neutral-400 pl-44">

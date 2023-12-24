@@ -13,7 +13,12 @@ export const Logo = () => {
     <Link href="/">
       <div className="hover:opacity-75 transition items-center gap-x-2 hidden md:flex">
         <Image src="/logo.png" alt="Logo" height={30} width={30} />
-        <p className={cn("text-lg text-sky-600 pb-1", headingFont.className)}>
+        <p
+          className={cn(
+            "text-lg text-sky-600 pb-1 dark:text-neutral-100",
+            headingFont.className
+          )}
+        >
           Mindmap
         </p>
       </div>

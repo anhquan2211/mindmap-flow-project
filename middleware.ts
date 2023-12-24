@@ -9,7 +9,10 @@ export default authMiddleware({
     "/",
     "/api/webhook",
     "/preview",
-    "/preview/367f44d5-6a3e-4e7f-b1ea-e63bdf2107e3",
+    "/about",
+    "/contact",
+    "/feature",
+    "/price",
   ],
 
   beforeAuth() {},
@@ -19,15 +22,17 @@ export default authMiddleware({
     // console.log(req.nextUrl);
     //Nếu như đã đăng nhập thì cần chuyển luôn vào trang của organization, và nếu người dùng chưa chọn organization thì cần redirect về trang chọn organization
     if (auth.userId && auth.isPublicRoute) {
-      let path = "/select-org";
+      if (!req.nextUrl.pathname.startsWith("/about")) {
+        let path = "/select-org";
 
-      if (auth.orgId) {
-        path = `/organization/${auth.orgId}`;
+        if (auth.orgId) {
+          path = `/organization/${auth.orgId}`;
+        }
+
+        const orgSelection = new URL(path, req.url);
+
+        return NextResponse.redirect(orgSelection);
       }
-
-      const orgSelection = new URL(path, req.url);
-
-      return NextResponse.redirect(orgSelection);
     }
 
     //Nếu người dùng chưa đăng nhập mà truy cập vào url cần đăng nhập thì redirect sang trang đăng nhập

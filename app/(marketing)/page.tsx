@@ -19,7 +19,7 @@ const textFont = Poppins({
 
 const MarketingPage = () => {
   return (
-    <div className="flex items-center justify-between flex-col relative h-[680px] p-0 ">
+    <div className="pt-28 flex items-center justify-between flex-col relative h-[680px] p-0 ">
       <div className="background-main"></div>
       <div
         className={cn(
