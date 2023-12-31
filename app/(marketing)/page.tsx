@@ -32,7 +32,7 @@ const MarketingPage = () => {
           It all starts with an idea
         </div>
         <h1 className="text-3xl md:text-6xl text-center text-neutral-800 mb-10 z-10 leading-4">
-          <div className="flex flex-col gap-3 items-center justify-center">
+          <div className="flex flex-col gap-3 items-center justify-center dark:text-slate-100">
             <span>Collaborative</span>
             <span>Mind Mapping</span>
           </div>
@@ -61,7 +61,7 @@ const MarketingPage = () => {
 
         <div
           className={cn(
-            "flex flex-col items-center justify-center mt-2 text-neutral-400 z-10",
+            "flex flex-col items-center justify-center mt-2 text-neutral-400 z-10 dark:text-slate-100",
             textFont.className
           )}
         >

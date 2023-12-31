@@ -17,7 +17,7 @@ export const Navbar = () => {
     <div className="fixed top-0 w-full h-14 px-4 shadow-sm bg-white flex items-center dark:bg-gray-900 z-50">
       <div className="md:max-w-screen-2xl mx-auto flex items-center w-full justify-between">
         <Logo />
-        <div className="ml-26">
+        <div className="ml-52">
           <Link href="/about" className={isActive("/about")}>
             About
           </Link>
@@ -36,7 +36,7 @@ export const Navbar = () => {
             size="sm"
             variant="outline"
             asChild
-            className="bg-slate-700 text-white hover:bg-slate-600 dark:bg-[#2f2b3a]"
+            className="bg-slate-700 text-white hover:bg-slate-600 dark:bg-[#2f2b3a] hover:text-slate-100"
           >
             <Link href="/sign-in">Login</Link>
           </Button>

@@ -17,7 +17,9 @@ const MarketingLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Navbar */}
         <Navbar />
 
-        <main className="pb-20 bg-slate-100 h-full">{children}</main>
+        <main className="pb-20 bg-slate-100 h-full dark:bg-sky-950">
+          {children}
+        </main>
 
         {/* Footer */}
         <Footer />
