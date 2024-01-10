@@ -8,6 +8,12 @@ body,
   height: 100%;
 }
 
+textarea {
+  resize: none;
+  border: none;
+  outline: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -96,6 +102,7 @@ body,
   color: aliceblue;
   padding: 6px 0;
   outline: none;
+  /* width: fit-content; */
 }
 
 .react-flow__edge-default.selected .react-flow__edge-path {
@@ -121,6 +128,9 @@ body,
 .download-image .react-flow__node {
   /* width: 50px;
   height: 50px; */
+  width: fit-content;
+  height: 100%;
+  /* max-width: 100px; */
   color: #7669e6;
   font-weight: 700;
   display: flex;

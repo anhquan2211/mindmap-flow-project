@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Handle, Position, useReactFlow } from "reactflow";
 import clsx from "clsx";
-// import { NodeResizer } from "@reactflow/node-resizer";
+import { NodeResizer } from "@reactflow/node-resizer";
 
 // import "@reactflow/node-resizer/dist/style.css";
 // import "../helper/ResizeRotateNode";
 
-function TextUpdateNode({ data, isConnectable, ...rest }) {
+function TextUpdateNode({ data, isConnectable, selected, ...rest }) {
   const { setNodes } = useReactFlow();
   const [disabled, setDisabled] = useState(true);
 
@@ -34,17 +34,16 @@ function TextUpdateNode({ data, isConnectable, ...rest }) {
   return (
     <div
       className={clsx(
-        "text-updater-node w-fit break-all dark:text-slate-200",
+        "text-updater-node break-all dark:text-slate-200 box-border w-full h-full",
         rest.id > 0 && "initial-node"
       )}
     >
-      {/* <NodeResizer
-        onResize={handleResize}
-        onResizeEnd={handleResizeEnd}
-        isVisible={resizable}
+      <NodeResizer
+        color="#ff0071"
+        isVisible={selected}
         minWidth={180}
         minHeight={100}
-      /> */}
+      />
       {rest.id > 0 && (
         <Handle
           type="target"
@@ -54,12 +53,15 @@ function TextUpdateNode({ data, isConnectable, ...rest }) {
           className="mb-2 w-fit"
         />
       )}
-      <div className="w-fit">
-        <input
+      <div className="box-border w-full h-full pt-2">
+        <textarea
           id="text"
           name="text"
           onChange={onChange}
-          className={clsx(!disabled && "nodrag editable", "w-full text-center")}
+          className={clsx(
+            !disabled && "nodrag editable",
+            "w-full h-full text-center pt-1"
+          )}
           defaultValue={data.label}
           readOnly={disabled}
           onDoubleClick={() => {

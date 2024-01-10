@@ -24,14 +24,13 @@ import "reactflow/dist/style.css";
 import "@/assets/index.css";
 import { useParams } from "next/navigation";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+
 import DownloadButton from "../helper/DownloadButton";
 
 import { postMindmap } from "@/helpers/mindmapService";
-import { useAction } from "@/hooks/use-action";
-import { createList } from "@/actions/create-list";
+import { ResizableNodeSelected } from "../helper/ResizableNodeSelected";
 
-const initialNodes = [
+let initialNodes = [
   {
     id: "0",
     type: "textUpdater",
@@ -115,6 +114,7 @@ const Mindmap = () => {
   const saveData = useCallback(() => {
     if (rfInstance) {
       let flow = rfInstance.toObject();
+      // console.log("flow: ", flow);
       flow = { ...flow, id: params.boardId };
 
       const index = flowArr.findIndex(
@@ -154,12 +154,14 @@ const Mindmap = () => {
   const onRestore = useCallback(() => {
     const restoreFlow = async () => {
       const flow = JSON.parse(localStorage.getItem(flowKey));
-      console.log("flow in onRestore: ", flow);
+      // console.log("flow in onRestore: ", flow);
       if (flow) {
         flow.map((item) => {
           if (item.id === params.boardId) {
             const { x = 0, y = 0, zoom = 1 } = item.viewport;
-            setNodes(item.nodes || []);
+            // console.log("item.nodes: ", item.nodes[0]);
+            initialNodes[0].data.label = item.nodes[0].data.label;
+            setNodes(item.nodes);
             setEdges(item.edges || []);
             setViewport({ x, y, zoom });
           }
@@ -221,11 +223,11 @@ const Mindmap = () => {
       const nodesToDelete = deleted.filter((node) => node.id !== "0");
 
       if (nodesToDelete.length === 0) return;
-      console.log("deleted: ", deleted);
+      // console.log("deleted: ", deleted);
       setEdges(
         deleted.reduce((acc, node) => {
-          console.log("acc: ", acc);
-          console.log("node: ", node);
+          // console.log("acc: ", acc);
+          // console.log("node: ", node);
 
           const incomers = getIncomers(node, nodes, edges);
           const outgoers = getOutgoers(node, nodes, edges);
@@ -290,7 +292,6 @@ const Mindmap = () => {
     try {
       if (data) {
         const result = await postMindmap(params);
-        console.log();
       }
     } catch (e) {}
   };
@@ -326,7 +327,7 @@ const Mindmap = () => {
         onInit={setRfInstance}
         snapToGrid={true}
         snapGrid={snapGrid}
-        className="download-image"
+        className="download-image react-flow-node-resizer-example"
         fitView
         nodeOrigin={[0.5, 0]}
         onNodeClick={(_, { id }) => {
@@ -393,7 +394,7 @@ const Mindmap = () => {
             ref={saveButtonRef}
             onClick={onSave}
             style={{
-              padding: "8px 10px",
+              padding: "8px 40px",
             }}
           >
             Save
