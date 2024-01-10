@@ -23,7 +23,7 @@ export default function BoardLink({ id, imageFullUrl, title }: BoardLinkProps) {
       } catch (error) {
         console.error("Error navigating to board:", error);
       } finally {
-        setIsLoading(false);
+        // setIsLoading(false);
       }
     }, 3000);
   };
