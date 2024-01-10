@@ -17,7 +17,7 @@ const BoardIdPage = async ({ params }: BoardIdPageProps) => {
     redirect("/select-org");
   }
 
-  console.log("userId", userId);
+  // console.log("userId", userId);
 
   const lists = await db.list.findMany({
     where: {

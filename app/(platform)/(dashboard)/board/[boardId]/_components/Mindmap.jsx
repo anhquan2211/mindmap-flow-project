@@ -17,6 +17,7 @@ import ReactFlow, {
   getConnectedEdges,
   Panel,
 } from "reactflow";
+
 import TextUpdateNode from "../helper/TextUpdate";
 
 import "reactflow/dist/style.css";

@@ -19,9 +19,9 @@ export default function ResizeRotateNode({
   }, []);
 
   const handleResizeEnd = useCallback(() => {
-    console.log("Resize end count", count);
+    // console.log("Resize end count", count);
     setCount((prev) => prev + 1);
-  }, [count]);
+  }, []);
 
   return (
     <>

@@ -9,6 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { MAX_FREE_BOARDS } from "@/constants/boards";
 import { getAvailableCount } from "@/lib/org-limit";
 import { checkSubcription } from "@/lib/subcription";
+import BoardLink from "./BoardLink";
 
 const BoardList = async () => {
   const { orgId } = auth();
@@ -38,15 +39,12 @@ const BoardList = async () => {
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {boards.map((board) => (
-          <Link
+          <BoardLink
             key={board.id}
-            href={`/board/${board.id}`}
-            style={{ backgroundImage: `url(${board.imageFullUrl})` }}
-            className="group relative aspect-video bg-no-repeat bg-center bg-cover bg-sky-700 rounded-sm h-full w-full p-2 overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition" />
-            <p className="relative font-semibold text-white">{board.title}</p>
-          </Link>
+            id={board.id}
+            imageFullUrl={board.imageFullUrl}
+            title={board.title}
+          />
         ))}
 
         <FormPopover sideOffset={10} side="right">

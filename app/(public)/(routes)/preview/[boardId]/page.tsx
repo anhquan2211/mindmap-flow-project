@@ -26,8 +26,8 @@ const BoardIdPagePublic = async ({ params }: BoardIdPageProps) => {
     },
   });
 
-  console.log("Đã vào preview");
-  console.log("userId: ", userId);
+  // console.log("Đã vào preview");
+  // console.log("userId: ", userId);
 
   return (
     <>

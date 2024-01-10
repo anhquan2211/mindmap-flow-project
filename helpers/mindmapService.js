@@ -7,7 +7,7 @@ export const getMindmap = async () => {
 };
 
 export const postMindmap = async (data) => {
-  console.log("data: ", data);
+  // console.log("data: ", data);
   const response = await fetch(`${api}`, {
     method: "POST",
     headers: {

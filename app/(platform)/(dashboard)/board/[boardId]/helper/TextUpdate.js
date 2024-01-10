@@ -34,7 +34,7 @@ function TextUpdateNode({ data, isConnectable, ...rest }) {
   return (
     <div
       className={clsx(
-        "text-updater-node w-full break-all",
+        "text-updater-node w-fit break-all dark:text-slate-200",
         rest.id > 0 && "initial-node"
       )}
     >
@@ -51,10 +51,10 @@ function TextUpdateNode({ data, isConnectable, ...rest }) {
           position={Position.Top}
           isConnectable={isConnectable}
           id="node-target"
-          className="mb-2"
+          className="mb-2 w-fit"
         />
       )}
-      <div>
+      <div className="w-fit">
         <input
           id="text"
           name="text"
@@ -64,7 +64,7 @@ function TextUpdateNode({ data, isConnectable, ...rest }) {
           readOnly={disabled}
           onDoubleClick={() => {
             setDisabled(false);
-            console.log(disabled);
+            // console.log(disabled);
           }}
           onBlur={() => {
             setDisabled(true);

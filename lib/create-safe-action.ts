@@ -14,11 +14,11 @@ export const createSafeAction = <TInput, TOutput>(
   schema: z.Schema<TInput>,
   handler: (validatedData: TInput) => Promise<ActionState<TInput, TOutput>>
 ) => {
-  console.log("create-safe-action");
+  // console.log("create-safe-action");
 
   return async (data: TInput): Promise<ActionState<TInput, TOutput>> => {
     const validationResult = schema.safeParse(data);
-    console.log("validationResult: ", validationResult);
+    // console.log("validationResult: ", validationResult);
 
     if (!validationResult.success) {
       return {
@@ -26,7 +26,7 @@ export const createSafeAction = <TInput, TOutput>(
           .fieldErrors as FieldErrors<TInput>,
       };
     }
-    console.log("data in create-safe", data);
+    // console.log("data in create-safe", data);
 
     return handler(validationResult.data);
   };
