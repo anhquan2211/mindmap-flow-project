@@ -17,9 +17,9 @@ export default function BoardLink({ id, imageFullUrl, title }: BoardLinkProps) {
 
   const handleBoardClick = () => {
     setIsLoading(true);
-    setTimeout(() => {
+    setTimeout(async () => {
       try {
-        router.push(`/board/${id}`);
+        await router.push(`/board/${id}`);
       } catch (error) {
         console.error("Error navigating to board:", error);
       } finally {
