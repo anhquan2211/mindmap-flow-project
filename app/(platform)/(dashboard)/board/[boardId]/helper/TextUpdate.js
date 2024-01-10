@@ -60,7 +60,7 @@ function TextUpdateNode({ data, isConnectable, selected, ...rest }) {
           onChange={onChange}
           className={clsx(
             !disabled && "nodrag editable",
-            "w-full h-full text-center pt-1"
+            "w-full h-full text-center pt-1 text-blue-500"
           )}
           defaultValue={data.label}
           readOnly={disabled}
