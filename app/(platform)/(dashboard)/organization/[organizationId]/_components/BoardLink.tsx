@@ -25,7 +25,7 @@ export default function BoardLink({ id, imageFullUrl, title }: BoardLinkProps) {
       } finally {
         // setIsLoading(false);
       }
-    }, 3000);
+    }, 1000);
   };
   return (
     <div

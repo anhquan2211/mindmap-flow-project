@@ -8,7 +8,7 @@ import { useAction } from "@/hooks/use-action";
 import { stripeRedirect } from "@/actions/stripe-redirect";
 import { toast } from "sonner";
 import { MdPublic } from "react-icons/md";
-import { Check, Copy } from "lucide-react";
+import { AlertTriangle, Check, Copy } from "lucide-react";
 import { useState } from "react";
 import { useOrigin } from "@/hooks/use-origin";
 import { usePathname } from "next/navigation";
@@ -111,6 +111,14 @@ export const PublicModal = () => {
             Published
           </Button>
         )}
+        <div className="text-neutral-700 mx-auto text-center">
+          <p className="text-sm font-semibold text-rose-600 dark:text-rose-400 flex items-center gap-1">
+            <AlertTriangle className="w-4 h-4" />
+            <span>
+              This feature is being developed, please try again later.
+            </span>
+          </p>
+        </div>
       </DialogContent>
     </Dialog>
   );

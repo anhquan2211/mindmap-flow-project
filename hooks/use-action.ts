@@ -26,11 +26,11 @@ export const useAction = <TInput, TOutput>(
   const execute = useCallback(
     async (input: TInput) => {
       setIsLoading(true);
-      console.log("input: ", input);
+      // console.log("input: ", input);
 
       try {
         const result = await action(input);
-        console.log("result: ", result);
+        // console.log("result: ", result);
         if (!result) return;
 
         setFieldErrors(result.fieldErrors);

@@ -28,6 +28,7 @@ import { toast } from "sonner";
 import DownloadButton from "../helper/DownloadButton";
 
 import { postMindmap } from "@/helpers/mindmapService";
+import BoardSave from "./board-save";
 import { ResizableNodeSelected } from "../helper/ResizableNodeSelected";
 
 let initialNodes = [
@@ -78,7 +79,7 @@ const defaultEdgeOptions = {
   type: "default",
 };
 
-const Mindmap = () => {
+const Mindmap = ({ autoSaveEnabled }) => {
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const restoreButtonRef = useRef(null);
@@ -137,13 +138,13 @@ const Mindmap = () => {
 
   useEffect(() => {
     const saveInterval = setInterval(() => {
-      if (saveButtonRef.current) {
+      if (autoSaveEnabled && saveButtonRef.current) {
         saveData();
+        toast.info("Draft saved!");
       }
-    }, 15000); // 10 seconds (10,000 milliseconds)
-
+    }, 15000);
     return () => clearInterval(saveInterval);
-  }, [saveData]);
+  }, [saveData, autoSaveEnabled]);
 
   const onSave = useCallback(() => {
     saveData();
@@ -424,6 +425,7 @@ const Mindmap = () => {
             Restore
           </button>
         </Panel>
+
         <Background className="bg-[#81ecec] dark:bg-[#2f2b3a]" />
         <DownloadButton />
       </ReactFlow>
