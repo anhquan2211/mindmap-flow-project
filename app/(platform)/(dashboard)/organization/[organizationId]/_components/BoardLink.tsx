@@ -17,13 +17,11 @@ export default function BoardLink({ id, imageFullUrl, title }: BoardLinkProps) {
 
   const handleBoardClick = () => {
     setIsLoading(true);
-    setTimeout(async () => {
+    setTimeout(() => {
       try {
-        await router.push(`/board/${id}`);
+        router.push(`/board/${id}`);
       } catch (error) {
         console.error("Error navigating to board:", error);
-      } finally {
-        // setIsLoading(false);
       }
     }, 1000);
   };
