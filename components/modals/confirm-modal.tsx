@@ -38,7 +38,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, id }) => {
       onClose();
       setTimeout(() => {
         toast.success("Deleted Mindmap Successfully!");
-      }, 500);
+      }, 2000);
     }
   };
 

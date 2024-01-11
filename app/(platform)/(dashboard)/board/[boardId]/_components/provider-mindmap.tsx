@@ -7,7 +7,7 @@ import { List } from "@prisma/client";
 
 import "reactflow/dist/style.css";
 import BoardSave from "./board-save";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ProviderMindMapProps {
   data: List[];
@@ -15,10 +15,17 @@ interface ProviderMindMapProps {
 }
 
 const ProviderMindMap = ({ data, boardId }: ProviderMindMapProps) => {
-  const [autoSaveEnabled, setAutoSaveEnabled] = useState(true);
+  const [autoSaveEnabled, setAutoSaveEnabled] = useState(() => {
+    const storedAutoSave = localStorage.getItem("autoSave");
+    return storedAutoSave ? JSON.parse(storedAutoSave) : true;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("autoSave", JSON.stringify(autoSaveEnabled));
+  }, [autoSaveEnabled]);
 
   const toggleAutoSave = () => {
-    setAutoSaveEnabled((prev) => !prev);
+    setAutoSaveEnabled((prev: boolean) => !prev);
   };
   return (
     <ReactFlowProvider>
